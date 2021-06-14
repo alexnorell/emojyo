@@ -1,0 +1,32 @@
+
+---
+version: '3'
+services:
+  emojyo:
+    image: emojyo:local
+    container_name: emojyo-app
+    tty: true
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/usr/local/src
+    ports:
+      - "5000:5000"
+    environment:
+      REDIS_PORT: 7777
+      REDIS_HOST: redis
+    command: python -m uvicorn main:app --port 5000 --host 0.0.0.0
+    depends_on:
+      - redis
+  redis:
+    image: redis:buster
+    container_name: emojyo-redis
+    command: redis-server --port 7777
+    ports:
+      - "7777:7777"
+    volumes:
+      - $PWD/redis-data:/var/lib/redis
+      - $PWD/redis.conf:/usr/local/etc/redis/redis.conf
+    environment:
+      - REDIS_REPLICATION_MODE=master

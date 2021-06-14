@@ -1,9 +1,15 @@
 from redis import Redis
-from datetime import datetime
+from os import environ as env
 
 class Database:
     def __init__(self):
-        self.redis = Redis(host='localhost', port='6379', db=0, decode_responses=True)
+        redis_port = env.get("REDIS_PORT")
+        redis_host = env.get("REDIS_HOST")
+        if not redis_port:
+            raise ValueError("REDIS_PORT needs to be set")
+        if not redis_host:
+            raise ValueError("REDIS_HOST needs to be set")
+        self.redis: Redis = Redis(host=redis_host, port=redis_port, db=0, decode_responses=True)
         self.USERS_KEY = "users"
 
     def create_user(self, username) -> bool:
