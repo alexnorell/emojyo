@@ -1,11 +1,11 @@
-from main import create_user
-from main import send_yo
-from main import get_yos
-import random
-import pytest
 import os
-from redis import Redis
+import random
 import re
+
+import pytest
+from redis import Redis
+
+from main import create_user, get_yos, send_yo
 
 NUMBER_OF_RANDOM_VALID_YOS = 10
 
@@ -53,5 +53,5 @@ def test_basic_functionality_with_redis_running(clean_redis):
         else:
             assert False
 
-    
+
 
