@@ -5,7 +5,7 @@ import re
 import pytest
 from redis import Redis
 
-from main import create_user, get_yos, send_yo
+from emojyo.main import create_user, get_yos, send_yo
 
 NUMBER_OF_RANDOM_VALID_YOS = 10
 

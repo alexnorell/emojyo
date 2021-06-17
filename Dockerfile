@@ -6,10 +6,8 @@ WORKDIR /usr/local/src
 COPY . .
 
 # Don't use a virtualenv
-# ARG POETRY_VIRTUALENVS_CREATE=False
+ARG POETRY_VIRTUALENVS_CREATE=False
 
-# Upgrade pip and install dependencies
-RUN pip install --upgrade pop && pip install -r requirements.txt
-# RUN pip install --upgrade pip \
-#     && pip install poetry \
-#     && poetry install --no-dev
+RUN pip install --upgrade pip \
+    && pip install poetry \
+    && poetry install --no-dev

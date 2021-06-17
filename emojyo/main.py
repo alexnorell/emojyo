@@ -3,7 +3,7 @@ from typing import Optional
 from fastapi import FastAPI
 from datetime import date, datetime
 
-from data import Database
+from emojyo.data import Database
 
 DB = Database()
 
