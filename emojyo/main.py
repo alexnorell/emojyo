@@ -9,6 +9,7 @@ DB = Database()
 
 app = FastAPI()
 
+
 @app.post("/create_user/")
 def create_user(username: str):
     DB.create_user(username)
