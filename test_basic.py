@@ -10,22 +10,23 @@ from main import create_user, get_yos, send_yo
 NUMBER_OF_RANDOM_VALID_YOS = 10
 
 user_name_list = [
-                    "Bear",
-                    "Steve",
-                    "Kellie",
-                    "Mykell",
-                    "Ray",
-                    "Grant",
-                    "Anna",
-                    "Brittany",
-                    "Jennifer",
-                    "Carolyn",
-                    "Sheryl",
-                    "Geraldine",
-                    "Ana",
-                    "Pam",
-                    "Luther"
-                ]
+    "Bear",
+    "Steve",
+    "Kellie",
+    "Mykell",
+    "Ray",
+    "Grant",
+    "Anna",
+    "Brittany",
+    "Jennifer",
+    "Carolyn",
+    "Sheryl",
+    "Geraldine",
+    "Ana",
+    "Pam",
+    "Luther",
+]
+
 
 @pytest.fixture
 def clean_redis():
@@ -35,12 +36,12 @@ def clean_redis():
 
 
 def test_basic_functionality_with_redis_running(clean_redis):
-    received_yos={}
+    received_yos = {}
     for user_name in user_name_list:
         create_user(user_name)
 
     for _ in range(NUMBER_OF_RANDOM_VALID_YOS):
-        send_user,receive_user = random.sample(user_name_list, 2)
+        send_user, receive_user = random.sample(user_name_list, 2)
         received_yos[receive_user] = received_yos.get(receive_user, [])
         received_yos[receive_user].append(send_user)
         send_yo(send_user, receive_user)
@@ -52,6 +53,3 @@ def test_basic_functionality_with_redis_running(clean_redis):
             assert True
         else:
             assert False
-
-
-
