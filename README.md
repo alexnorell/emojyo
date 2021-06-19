@@ -9,6 +9,7 @@ Requirements:
 - poetry
 - docker
 - pyenv
+- pytest
 
 ### Installing dependencies
 
