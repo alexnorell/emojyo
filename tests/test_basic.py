@@ -30,12 +30,12 @@ user_name_list = [
 
 @pytest.fixture
 def clean_redis():
-    Redis(port=os.environ["REDIS_PORT"]).flushall()
+    Redis(host=os.environ["REDIS_HOST"], port=os.environ["REDIS_PORT"]).flushall()
     yield
-    Redis(port=os.environ["REDIS_PORT"]).flushall()
+    Redis(host=os.environ["REDIS_HOST"], port=os.environ["REDIS_PORT"]).flushall()
 
 
-def test_basic_functionality_with_redis_running(clean_redis):
+def test_basic_functionality_with_redis_active(clean_redis):
     received_yos = {}
     for user_name in user_name_list:
         create_user(user_name)

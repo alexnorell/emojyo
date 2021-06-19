@@ -11,3 +11,5 @@ ARG POETRY_VIRTUALENVS_CREATE=False
 RUN pip install --upgrade pip \
     && pip install poetry \
     && poetry install --no-dev
+    
+RUN pip install pytest
