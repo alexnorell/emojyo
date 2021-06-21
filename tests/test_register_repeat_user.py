@@ -42,7 +42,4 @@ def test_register_repeat_user_with_redis_active(clean_redis):
     for user_name in user_name_list:
         yos = get_yos(user_name)
         yo_senders = [re.search(r"(\w+)", yo_string).group(0) for yo_string in yos]
-        if received_yos.get(user_name, []) == yo_senders:
-            assert True
-        else:
-            assert False
+        assert received_yos.get(user_name, []) == yo_senders
