@@ -25,18 +25,25 @@ def test_register_repeat_user_with_redis_active(clean_redis):
     received_yos = {}
     for user_name in user_name_list:
         create_user(user_name)
+    # Add a username a second time
     create_user(user_name_list[0])
 
-    send_user = "Bear"
-    receive_user = "Steve"
+    # Send a yo from the repeated username
+    send_user = user_name_list[0]
+    receive_user = user_name_list[1]
+    # Add transaction to receieved_yos list to for checker to know expected list of received yos
     received_yos[receive_user] = received_yos.get(receive_user, [])
     received_yos[receive_user].append(send_user)
+    
     send_yo(send_user, receive_user)
 
-    receive_user = "Steve"
-    send_user = "Bear"
+    # Send a yo to the repeated username
+    receive_user = user_name_list[1]
+    send_user = user_name_list[0]
+    # Add transaction to receieved_yos list to for checker to know expected list of received yos
     received_yos[receive_user] = received_yos.get(receive_user, [])
     received_yos[receive_user].append(send_user)
+    
     send_yo(send_user, receive_user)
 
     for user_name in user_name_list:
