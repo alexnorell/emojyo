@@ -40,6 +40,8 @@ def test_register_repeat_user_with_redis_active(clean_redis):
     send_yo(send_user, receive_user)
 
     for user_name in user_name_list:
+        # Get list of Yo's sent to user and extract the username of the sender
         yos = get_yos(user_name)
         yo_senders = [re.search(r"(\w+)", yo_string).group(0) for yo_string in yos]
+        # Check that the return list of senders matches the expected list of senders
         assert received_yos.get(user_name, []) == yo_senders
