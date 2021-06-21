@@ -23,7 +23,3 @@ jobs:
       run: python -m poetry install
       env:
         ARG POETRY_VIRTUALENVS_CREATE: "False"
-    - name: Pylint
-      run: python -m pylint --reports=y --output-format=colorized --jobs=0 ./**/*.py
-    - name: Black
-      run: python -m black --check --diff --color ./**/*.py
