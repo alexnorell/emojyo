@@ -29,4 +29,7 @@ jobs:
           VALIDATE_MARKDOWN: true
           VALIDATE_TERRAFORM: true
           VALIDATE_YAML: true
-          VALIDATE_PYTHON: true
+          VALIDATE_PYTHON_BLACK: true
+          VALIDATE_PYTHON_MYPY: true
+          VALIDATE_PYTHON_ISORT: true
+          VALIDATE_PYTHON_PYLINT: true
