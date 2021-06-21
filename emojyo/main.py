@@ -6,7 +6,7 @@ from datetime import date, datetime
 
 from emojyo.data import Database
 
-MIN_USERNAME_LENGTH=3
+MIN_USERNAME_LENGTH=1
 
 DB = Database()
 
