@@ -1,9 +1,12 @@
 from typing import Optional
 
 from fastapi import FastAPI
+from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from datetime import date, datetime
 
 from emojyo.data import Database
+
+MIN_USERNAME_LENGTH=1
 
 DB = Database()
 
@@ -11,8 +14,11 @@ app = FastAPI()
 
 @app.post("/create_user/")
 def create_user(username: str):
-    DB.create_user(username)
-    return "User Created"
+    if len(username) >= MIN_USERNAME_LENGTH:
+        DB.create_user(username)
+        return "User Created"
+    else:
+        return f"Username Must be at least {MIN_USERNAME_LENGTH} characters"
 
 
 @app.post("/yos/")
