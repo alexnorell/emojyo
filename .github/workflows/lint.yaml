@@ -1,5 +1,12 @@
 name: Python Checks
 
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    types: [opened, reopened, synchronize]
+
 jobs:
   Python:
     runs-on: ubuntu-latest
