@@ -1,5 +1,7 @@
-from redis import Redis
 from os import environ as env
+
+from redis import Redis
+
 
 class Database:
     def __init__(self):
@@ -9,7 +11,9 @@ class Database:
             raise ValueError("REDIS_PORT needs to be set")
         if not redis_host:
             raise ValueError("REDIS_HOST needs to be set")
-        self.redis: Redis = Redis(host=redis_host, port=redis_port, db=0, decode_responses=True)
+        self.redis: Redis = Redis(
+            host=redis_host, port=redis_port, db=0, decode_responses=True
+        )
         self.USERS_KEY = "users"
 
     def create_user(self, username) -> bool:

@@ -1,13 +1,14 @@
+from datetime import date, datetime
 from typing import Optional
 
 from fastapi import FastAPI
-from datetime import date, datetime
 
 from emojyo.data import Database
 
 DB = Database()
 
 app = FastAPI()
+
 
 @app.post("/create_user/")
 def create_user(username: str):
