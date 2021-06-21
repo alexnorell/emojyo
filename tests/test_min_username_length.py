@@ -4,10 +4,7 @@ import re
 import pytest
 from redis import Redis
 
-from emojyo.main import create_user, get_yos, send_yo
-from emojyo.data import Database
-
-DB = Database()
+from emojyo.main import create_user
 
 @pytest.fixture
 def clean_redis():
